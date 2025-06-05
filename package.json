@@ -1,0 +1,23 @@
+{
+  "name": "telegram-ai-bot-netlify",
+  "version": "1.0.0",
+  "description": "AI-powered Telegram bot using OpenAI - Netlify deployment",
+  "main": "netlify/functions/telegram-webhook.js",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "dev": "netlify dev"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "dependencies": {
+    "node-telegram-bot-api": "^0.64.0",
+    "openai": "^4.20.1"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  },
+  "keywords": ["telegram", "bot", "ai", "openai", "chatbot", "netlify"],
+  "author": "Your Name",
+  "license": "MIT"
+}
